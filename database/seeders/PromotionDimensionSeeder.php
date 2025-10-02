@@ -14,11 +14,18 @@ class PromotionDimensionSeeder extends Seeder
     {
         DB::table('promotion_dimension')->insert([
             [
+                'promotion_code' => 'NEW',
+                'promotion_name' => 'New Years Eve',
+                'promotion_media_type' => 'In-store',
+                'promotion_begin_date' => '2024-12-26',
+                'promotion_end_date' => '2025-01-04',
+            ],
+            [
                 'promotion_code' => 'VAL',
                 'promotion_name' => 'Valentine Day',
                 'promotion_media_type' => 'In-store',
                 'promotion_begin_date' => '2025-02-01',
-                'promotion_end_date' => '2025-02-30',
+                'promotion_end_date' => '2025-02-28',
             ],
             [
                 'promotion_code' => 'EAS',
@@ -75,13 +82,6 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_media_type' => 'Flyer',
                 'promotion_begin_date' => '2025-11-10',
                 'promotion_end_date' => '2025-11-20',
-            ],
-            [
-                'promotion_code' => 'NEW',
-                'promotion_name' => 'New Years Eve',
-                'promotion_media_type' => 'In-store',
-                'promotion_begin_date' => '2024-12-26',
-                'promotion_end_date' => '2025-01-04',
             ],
         ]);
     }

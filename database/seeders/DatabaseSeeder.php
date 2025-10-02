@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductDimensionSeeder::class,
             PromotionDimensionSeeder::class,
+            CashierDimensionSeeder::class,
+            StoreDimensionSeeder::class,
+            PaymentMethodDimensionSeeder::class,
         ]);
 
 
