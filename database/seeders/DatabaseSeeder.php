@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ProductDimensionSeeder::class,
+            PromotionDimensionSeeder::class,
         ]);
+
+
     }
 }
