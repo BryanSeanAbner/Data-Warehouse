@@ -23,13 +23,13 @@ return new class extends Migration
         	$table->integer('day_number_in_fiscal_year');
 			$table->string('calendar_month_name');
         	$table->integer('calendar_month_number_in_year');
-        	$table->integer('calendar_year_month');
+        	$table->string('calendar_year_month');
 			$table->string('calendar_quarter');
 			$table->string('calendar_year_quarter');
 			$table->integer('calendar_year');
 			$table->string('fiscal_month');
         	$table->integer('fiscal_month_number_in_year');
-			$table->integer('fiscal_year_month');
+			$table->string('fiscal_year_month');
 			$table->string('fiscal_quarter');
 			$table->string('fiscal_year_quarter');
 			$table->integer('fiscal_year');
