@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             CashierDimensionSeeder::class,
             StoreDimensionSeeder::class,
             PaymentMethodDimensionSeeder::class,
+            RetailSalesFactSeeder::class,
         ]);
 
     }
