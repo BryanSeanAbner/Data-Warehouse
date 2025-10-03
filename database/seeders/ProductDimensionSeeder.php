@@ -343,14 +343,6 @@ class ProductDimensionSeeder extends Seeder
             ],
             [
                 'sku_number' => 'VG397ZYU',
-                'product_description' => 'Paper puncher combo',
-                'brand_name' => 'Carla Craft',
-                'subcategory_name' => 'Paper puncher',
-                'category_name' => 'Office',
-                'department_name' => 'Office supplies',
-            ],
-            [
-                'sku_number' => 'VG398ZYU',
                 'product_description' => 'Dater stamp',
                 'brand_name' => 'Kenko',
                 'subcategory_name' => 'Stamp',
@@ -358,7 +350,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG399ZYU',
+                'sku_number' => 'VG398ZYU',
                 'product_description' => 'Flash stamp',
                 'brand_name' => 'USPS',
                 'subcategory_name' => 'Stamp',
@@ -366,7 +358,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG400ZYU',
+                'sku_number' => 'VG399ZYU',
                 'product_description' => 'Scissors',
                 'brand_name' => 'Kenko',
                 'subcategory_name' => 'Scissors',
@@ -374,7 +366,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG401ZYU',
+                'sku_number' => 'VG400ZYU',
                 'product_description' => 'Cutter Knife',
                 'brand_name' => 'Joyko',
                 'subcategory_name' => 'Cutter',
@@ -382,7 +374,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG402ZYU',
+                'sku_number' => 'VG401ZYU',
                 'product_description' => 'Glue stick',
                 'brand_name' => 'UHU',
                 'subcategory_name' => 'Glue',
@@ -390,7 +382,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG403ZYU',
+                'sku_number' => 'VG402ZYU',
                 'product_description' => 'Liquid glue',
                 'brand_name' => 'Fox',
                 'subcategory_name' => 'Glue',
@@ -398,7 +390,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG404ZYU',
+                'sku_number' => 'VG403ZYU',
                 'product_description' => 'Glue Gun + Stick',
                 'brand_name' => 'Joyko',
                 'subcategory_name' => 'Glue',
@@ -406,7 +398,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG405ZYU',
+                'sku_number' => 'VG404ZYU',
                 'product_description' => 'Ruler plastic',
                 'brand_name' => 'Joyko',
                 'subcategory_name' => 'Glue',
@@ -414,7 +406,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
-                'sku_number' => 'VG406ZYU',
+                'sku_number' => 'VG405ZYU',
                 'product_description' => 'Ruler metal',
                 'brand_name' => 'Butterfly',
                 'subcategory_name' => 'Measuring tools',
