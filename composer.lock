@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "499ff201ed8537cc67e26201ae6954a0",
+    "content-hash": "a18b1c101e7d633f506285217af17d46",
     "packages": [
         {
             "name": "brick/math",
@@ -2513,6 +2513,56 @@
                 }
             ],
             "time": "2025-05-08T08:14:37+00:00"
+        },
+        {
+            "name": "pharaonic/php-hijri",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pharaonic/php-hijri.git",
+                "reference": "12dfb6b8ca07ba29658fba80b44f78fce19bf206"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pharaonic/php-hijri/zipball/12dfb6b8ca07ba29658fba80b44f78fce19bf206",
+                "reference": "12dfb6b8ca07ba29658fba80b44f78fce19bf206",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": ">=2.20.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pharaonic\\Hijri\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moamen Eltouny (Raggi)",
+                    "email": "raggigroup@gmail.com"
+                }
+            ],
+            "description": "PHP - Hijri DateTime (Islamic).",
+            "keywords": [
+                "hijri",
+                "islamic",
+                "php hijri",
+                "php islamic"
+            ],
+            "support": {
+                "issues": "https://github.com/Pharaonic/php-hijri/issues",
+                "source": "https://github.com/Pharaonic/php-hijri/tree/2.1.0"
+            },
+            "time": "2025-01-17T09:17:36+00:00"
         },
         {
             "name": "phiki/phiki",
