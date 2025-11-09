@@ -12,6 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('retail_sales_fact', function (Blueprint $table) {
+			// Tambahkan id sebagai primary key untuk performa dan integritas
+			$table->id();
+			
 			$table->integer('date_key');
 			$table->foreign('date_key')
 				->references('date_key')
@@ -49,15 +52,13 @@ return new class extends Migration
 				->onDelete('cascade');
 			
 			$table->integer('transaction_id');
-			$table->integer('sales_quantity');
-			$table->decimal('regular_unit_price', 10, 2);
-			$table->decimal('discount_unit_price', 10, 2);
-			$table->decimal('net_unit_price', 10, 2);
-			$table->decimal('extended_discount_amount', 10, 2);
-			$table->decimal('extended_sales_amount', 10, 2);
-			$table->decimal('extended_cost_amount', 10, 2);
-			$table->decimal('extended_gross_profit_amount', 10, 2);
-			$table->decimal('extended_gross_margin_amount', 10, 2);
+			$table->decimal('gross_profit', 10, 2);
+			
+			// Tambahkan index untuk performa query
+			$table->index(['date_key', 'product_key', 'store_key']);
+			$table->index('date_key');
+			$table->index('product_key');
+			$table->index('store_key');
         });
     }
 
