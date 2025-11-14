@@ -51,6 +51,7 @@ return new class extends Migration
 			$table->integer('transaction_id');
 			$table->integer('sales_quantity');
 			$table->decimal('regular_unit_price', 10, 2);
+			$table->decimal('unit_cost', 10, 2);
 			$table->decimal('discount_unit_price', 10, 2);
 			$table->decimal('net_unit_price', 10, 2);
 			$table->decimal('extended_discount_amount', 10, 2);

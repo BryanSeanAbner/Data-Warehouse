@@ -14,6 +14,13 @@ class PromotionDimensionSeeder extends Seeder
     {
         DB::table('promotion_dimension')->insert([
             [
+                'promotion_code' => 'NA',
+                'promotion_name' => 'No Promotion',
+                'promotion_media_type' => 'Not Applicable',
+                'promotion_begin_date' => "9999-12-31",
+                'promotion_end_date' => "9999-12-31",
+            ],
+            [
                 'promotion_code' => 'NEW',
                 'promotion_name' => 'New Years Eve',
                 'promotion_media_type' => 'In-store',
@@ -82,7 +89,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_media_type' => 'Flyer',
                 'promotion_begin_date' => '2025-11-10',
                 'promotion_end_date' => '2025-11-20',
-            ],
+            ]
         ]);
     }
 }
