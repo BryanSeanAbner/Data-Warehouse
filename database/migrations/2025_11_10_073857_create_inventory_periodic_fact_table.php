@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventory_fact', function (Blueprint $table) {
+        Schema::create('inventory_periodic_fact', function (Blueprint $table) {
             $table->id();
             
             $table->integer('date_key');
@@ -26,20 +26,29 @@ return new class extends Migration
                 ->on('product_dimension')
                 ->onDelete('cascade');
 
+            $table->unsignedInteger('store_key');
+			$table->foreign('store_key')
+				->references('store_key')
+				->on('store_dimension')
+				->onDelete('cascade');
+
             $table->integer('quantity_of_sold')->default(0);
-            $table->integer('quantity_of_hand')->default(0);
+            $table->integer('quantity_on_hand')->default(0);
             $table->integer('final_quantity_on_hand')->default(0);
-            $table->integer('avg_quantity_sold')->default(0);
+            $table->decimal('number_of_turns', 15, 4)->nullable()->comment('quantity_of_sold / quantity_on_hand');
+
+            // $table->integer('avg_quantity_sold')->default(0);
             
-            $table->decimal('number_of_turns', 15, 4)->nullable()->comment('quantity_of_sold / quantity_of_hand');
-            $table->decimal('number_of_day_supply', 15, 4)->nullable()->comment('final_quantity_on_hand / avg_quantity_sold');
+            // $table->decimal('number_of_day_supply', 15, 4)->nullable()->comment('final_quantity_on_hand / avg_quantity_sold');
             
-            $table->decimal('extended_value_of_inventory_cost', 15, 2)->default(0);
-            $table->decimal('latest_selling_price', 15, 2)->default(0);
+            // $table->decimal('extended_value_of_inventory_cost', 15, 2)->default(0);
             
-            $table->index(['date_key', 'product_key']);
+            // $table->decimal('latest_selling_price', 15, 2)->default(0);
+            
+            $table->index(['date_key', 'product_key', 'store_key']);
             $table->index('date_key');
             $table->index('product_key');
+			$table->index('store_key');
             
             $table->timestamps();
         });
@@ -50,11 +59,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('inventory_fact', function (Blueprint $table) {
+        Schema::table('inventory_periodic_fact', function (Blueprint $table) {
             $table->dropForeign(['date_key']);
             $table->dropForeign(['product_key']);
+            $table->dropForeign(['store_key']);
         });
 
-        Schema::dropIfExists('inventory_fact');
+        Schema::dropIfExists('inventory_periodic_fact');
     }
 };

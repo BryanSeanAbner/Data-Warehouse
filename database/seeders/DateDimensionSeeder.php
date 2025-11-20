@@ -12,11 +12,44 @@ Carbon::mixin(HijriCarbon::class);
 
 class DateDimensionSeeder extends Seeder
 {
+    public function insertNotApplicable(): void
+    {
+        // Inserts a default row representing a 'Not Applicable' condition
+        DB::table('date_dimension')->insert([
+            [
+                'date_key' => 0,
+                'date' => '9999-12-31',
+                'full_date_description' => 'Not Applicable',
+                'day_of_week' => 'Not Applicable',
+                'day_number_in_calendar_month' => 0,
+                'day_number_in_calendar_year' => 0,
+                'day_number_in_fiscal_month' => 0,
+                'day_number_in_fiscal_year' => 0,
+                'calendar_month_name' => 'Not Applicable',
+                'calendar_month_number_in_year' => 0,
+                'calendar_year_month' => 'Not Applicable',
+                'calendar_quarter' => 'Not Applicable',
+                'calendar_year_quarter' => 'Not Applicable',
+                'calendar_year' => 0,
+                'fiscal_month' => 'Not Applicable',
+                'fiscal_month_number_in_year' => 0,
+                'fiscal_year_month' => 'Not Applicable',
+                'fiscal_quarter' => 'Not Applicable',
+                'fiscal_year_quarter' => 'Not Applicable',
+                'fiscal_year' => 0,
+                'holiday_indicator' => 'Not Applicable',
+                'weekday_indicator' => 'Not Applicable',
+            ]
+        ]);
+    }
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        $this->insertNotApplicable();
+
         $start = Carbon::create(2024, 1, 1);
         $end = Carbon::create(2025, 12, 31);
 

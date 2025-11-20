@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_dimension', function (Blueprint $table) {
-            $table->increments('product_key');
+            $table->unsignedInteger('product_key')->primary();
             $table->string('sku_number');
             $table->string('product_description');
             $table->string('brand_name');

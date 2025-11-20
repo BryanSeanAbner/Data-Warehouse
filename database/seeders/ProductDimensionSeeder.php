@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\AutoIncrementSeeder;
 
-class ProductDimensionSeeder extends Seeder
+class ProductDimensionSeeder extends AutoIncrementSeeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,16 @@ class ProductDimensionSeeder extends Seeder
     {
         DB::table('product_dimension')->insert([
             [
+                'product_key' => 0,
+                'sku_number' => 'Not Applicable',
+                'product_description' => 'Not Applicable',
+                'brand_name' => 'Not Applicable',
+                'subcategory_name' => 'Not Applicable',
+                'category_name' => 'Not Applicable',
+                'department_name' => 'Not Applicable',
+            ],
+            [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS946RUR',
                 'product_description' => 'Ballpoint pen 0.5 mm',
                 'brand_name' => 'Snowman',
@@ -22,6 +33,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS945RUR',
                 'product_description' => 'Ballpoint pen 0.2 mm',
                 'brand_name' => 'Snowman',
@@ -30,6 +42,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS944RUR',
                 'product_description' => 'Pencil HB',
                 'brand_name' => 'Faber-Castel II',
@@ -38,6 +51,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS943RUR',
                 'product_description' => 'Pencil 2B',
                 'brand_name' => 'Faber-Castel II',
@@ -46,6 +60,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS942RUR',
                 'product_description' => 'Spidol pack 12-color',
                 'brand_name' => 'Kenko',
@@ -54,6 +69,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS941RUR',
                 'product_description' => 'Spidol pack 6-color',
                 'brand_name' => 'Kenko',
@@ -62,6 +78,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS940RUR',
                 'product_description' => 'Highlighter XS',
                 'brand_name' => 'Kenko',
@@ -70,6 +87,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS939RUR',
                 'product_description' => 'Highlighter XSS',
                 'brand_name' => 'Kenko',
@@ -78,6 +96,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS938RUR',
                 'product_description' => 'Crayon pack 30-color',
                 'brand_name' => 'Faber-Castel II',
@@ -86,6 +105,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS937RUR',
                 'product_description' => 'Crayon pack 60-color',
                 'brand_name' => 'Faber-Castel II',
@@ -94,6 +114,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS936RUR',
                 'product_description' => 'Coloring pencil pack 30-color',
                 'brand_name' => 'Joyko',
@@ -102,6 +123,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS935RUR',
                 'product_description' => 'Coloring pencil pack 60-color',
                 'brand_name' => 'Joyko',
@@ -110,6 +132,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS934RUR',
                 'product_description' => 'Brush pen M',
                 'brand_name' => 'Sakura',
@@ -118,6 +141,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS933RUR',
                 'product_description' => 'Brush pen L',
                 'brand_name' => 'Sakura',
@@ -126,6 +150,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS932RUR',
                 'product_description' => 'Notebook A5',
                 'brand_name' => 'Sinar Dunia (SiDU)',
@@ -134,6 +159,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS931RUR',
                 'product_description' => 'Binder A4',
                 'brand_name' => 'Kiky',
@@ -142,6 +168,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS930RUR',
                 'product_description' => 'Binder A5',
                 'brand_name' => 'Kiky',
@@ -150,6 +177,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS929RUR',
                 'product_description' => 'Post-it original',
                 'brand_name' => 'Post-it',
@@ -158,6 +186,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS928RUR',
                 'product_description' => 'Memo pad A4',
                 'brand_name' => 'Kiky',
@@ -166,6 +195,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS927RUR',
                 'product_description' => 'Kertas HVS (A4,F4,A3)',
                 'brand_name' => 'SiDU',
@@ -174,6 +204,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS926RUR',
                 'product_description' => 'Photo paper A4',
                 'brand_name' => 'Epson',
@@ -182,6 +213,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS925RUR',
                 'product_description' => 'Art paper A4',
                 'brand_name' => 'ArtCarton',
@@ -190,6 +222,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS924RUR',
                 'product_description' => 'Tracing paper A4',
                 'brand_name' => 'Kokuyo',
@@ -198,6 +231,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS923RUR',
                 'product_description' => 'Wall calender festive',
                 'brand_name' => 'Joyko',
@@ -206,6 +240,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS922RUR',
                 'product_description' => 'Planner original',
                 'brand_name' => 'Kokuyo',
@@ -214,6 +249,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS921RUR',
                 'product_description' => 'Agenda A5',
                 'brand_name' => 'Kenko',
@@ -222,6 +258,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS920RUR',
                 'product_description' => 'Diary plaid A5',
                 'brand_name' => 'Campus',
@@ -230,6 +267,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'KS919RUR',
                 'product_description' => 'Diary checkered A5',
                 'brand_name' => 'Campus',
@@ -238,6 +276,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Stationery',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG384ZYU',
                 'product_description' => 'Clear holder 10-pocket',
                 'brand_name' => 'Eagle',
@@ -246,6 +285,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG385ZYU',
                 'product_description' => 'Clear holder 20-pocket',
                 'brand_name' => 'Eagle',
@@ -254,6 +294,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG386ZYU',
                 'product_description' => 'Clear holder 30-pocket',
                 'brand_name' => 'Eagle',
@@ -262,6 +303,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG387ZYU',
                 'product_description' => 'Paper clip 50-pack',
                 'brand_name' => 'Monotaro',
@@ -270,6 +312,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG388ZYU',
                 'product_description' => 'Paper clip 200-pack',
                 'brand_name' => 'Monotaro',
@@ -278,6 +321,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG389ZYU',
                 'product_description' => 'Box file PVC',
                 'brand_name' => 'Bantex',
@@ -286,6 +330,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG390ZYU',
                 'product_description' => 'Box file PVC Plus',
                 'brand_name' => 'Bantex',
@@ -294,6 +339,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG391ZYU',
                 'product_description' => 'Box file clear',
                 'brand_name' => 'Monotaro',
@@ -302,6 +348,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG392ZYU',
                 'product_description' => 'Stapler HD-10',
                 'brand_name' => 'Joyko',
@@ -310,6 +357,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG393ZYU',
                 'product_description' => 'Stapler HD-50',
                 'brand_name' => 'Joyko',
@@ -318,6 +366,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG394ZYU',
                 'product_description' => 'Stapler heavy duty',
                 'brand_name' => 'Sakura',
@@ -326,6 +375,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG395ZYU',
                 'product_description' => 'Paper puncher basic',
                 'brand_name' => 'Carla Craft',
@@ -334,6 +384,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG396ZYU',
                 'product_description' => 'Paper puncher extreme',
                 'brand_name' => 'Carla Craft',
@@ -342,6 +393,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG397ZYU',
                 'product_description' => 'Dater stamp',
                 'brand_name' => 'Kenko',
@@ -350,6 +402,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG398ZYU',
                 'product_description' => 'Flash stamp',
                 'brand_name' => 'USPS',
@@ -358,6 +411,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG399ZYU',
                 'product_description' => 'Scissors',
                 'brand_name' => 'Kenko',
@@ -366,6 +420,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG400ZYU',
                 'product_description' => 'Cutter Knife',
                 'brand_name' => 'Joyko',
@@ -374,6 +429,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG401ZYU',
                 'product_description' => 'Glue stick',
                 'brand_name' => 'UHU',
@@ -382,6 +438,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG402ZYU',
                 'product_description' => 'Liquid glue',
                 'brand_name' => 'Fox',
@@ -390,6 +447,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG403ZYU',
                 'product_description' => 'Glue Gun + Stick',
                 'brand_name' => 'Joyko',
@@ -398,6 +456,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG404ZYU',
                 'product_description' => 'Ruler plastic',
                 'brand_name' => 'Joyko',
@@ -406,6 +465,7 @@ class ProductDimensionSeeder extends Seeder
                 'department_name' => 'Office supplies',
             ],
             [
+                'product_key' => $this->getIncrement(),
                 'sku_number' => 'VG405ZYU',
                 'product_description' => 'Ruler metal',
                 'brand_name' => 'Butterfly',
@@ -416,6 +476,3 @@ class ProductDimensionSeeder extends Seeder
         ]);
     }
 }
-
-
-
