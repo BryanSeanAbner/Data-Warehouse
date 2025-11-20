@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('promotion_dimension', function (Blueprint $table) {
-            $table->increments('promotion_key');
+            $table->unsignedInteger('promotion_key')->primary();
             $table->string('promotion_code');
             $table->string('promotion_name');
             $table->string('promotion_media_type');

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cashier_dimension', function (Blueprint $table) {
-            $table->increments('cashier_key');
+            $table->unsignedInteger('cashier_key')->primary();
             $table->string('cashier_name');
             $table->date('hire_date');
             $table->string('shift_type');

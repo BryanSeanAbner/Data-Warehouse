@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('retail_sales_fact', function (Blueprint $table) {
-			// Tambahkan id sebagai primary key untuk performa dan integritas
 			$table->id();
 			
 			$table->integer('date_key');

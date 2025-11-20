@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\AutoIncrementSeeder;
 
-class StoreDimensionSeeder extends Seeder
+class StoreDimensionSeeder extends AutoIncrementSeeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,17 @@ class StoreDimensionSeeder extends Seeder
     {
         DB::table('store_dimension')->insert([
             [
+                'store_key' => 0,
+                'store_name' => 'Not Applicable',
+                'store_street_address' => 'Not Applicable',
+                'store_subdistrict' => 'Not Applicable',
+                'store_district' => 'Not Applicable',
+                'store_city' => 'Not Applicable',
+                'store_province' => 'Not Applicable',
+            ],
+
+            [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Dipati Unus',
                 'store_street_address' => 'Jl. Dipati Unus',
                 'store_subdistrict' => 'Cibodas',
@@ -24,6 +35,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Raden Fatah',
                 'store_street_address' => 'Jl. Raden Fatah',
                 'store_subdistrict' => 'Sudimara Barat',
@@ -33,6 +45,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Raya Cicadas',
                 'store_street_address' => 'Jl. Raya Cicadas',
                 'store_subdistrict' => 'Ciater',
@@ -42,6 +55,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Wahyudi',
                 'store_street_address' => 'Jl. Wahyudi',
                 'store_subdistrict' => 'Pondok Cabe',
@@ -51,6 +65,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Kamal Raya',
                 'store_street_address' => 'Jl. Kamal Raya',
                 'store_subdistrict' => 'Cengkareng Barat',
@@ -60,6 +75,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Anggrek Garuda',
                 'store_street_address' => 'Jl. Anggrek Garuda',
                 'store_subdistrict' => 'Slipi',
@@ -69,6 +85,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Letjen Suprapto',
                 'store_street_address' => 'Jl. Letjen Suprapto',
                 'store_subdistrict' => 'Cempaka Baru',
@@ -78,6 +95,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Cempaka Putih Tengah',
                 'store_street_address' => 'Jl. Cempaka Putih Tengah',
                 'store_subdistrict' => 'Rawasari',
@@ -87,6 +105,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Manggarai Utara',
                 'store_street_address' => 'Jl. Manggarai Utara',
                 'store_subdistrict' => 'Manggarai',
@@ -96,6 +115,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Villa Jatipadang',
                 'store_street_address' => 'Jl. Villa Jatipadang',
                 'store_subdistrict' => 'Jati Padang',
@@ -105,6 +125,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Jatinegara Kaum',
                 'store_street_address' => 'Jl. Jatinegara Kaum',
                 'store_subdistrict' => 'Jatinegara',
@@ -114,6 +135,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Kelapa Hijau',
                 'store_street_address' => 'Jl. Kelapa Hijau',
                 'store_subdistrict' => 'Kayu Manis',
@@ -123,6 +145,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Yos Sudarso',
                 'store_street_address' => 'Jl. Yos Sudarso',
                 'store_subdistrict' => 'Ancol',
@@ -132,6 +155,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Monas',
                 'store_street_address' => 'Jl. Monas',
                 'store_subdistrict' => 'Tugu Utara',
@@ -141,6 +165,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Raya Bekasi',
                 'store_street_address' => 'Jl. Raya Bekasi',
                 'store_subdistrict' => 'Medan Satria',
@@ -150,6 +175,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Raya Mustika Sari',
                 'store_street_address' => 'Jl. Raya Mustika Sari',
                 'store_subdistrict' => 'Mustikasari',
@@ -159,6 +185,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Cilember',
                 'store_street_address' => 'Jl. Cilember',
                 'store_subdistrict' => 'Curug',
@@ -168,6 +195,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Raya Aneka Tambang',
                 'store_street_address' => 'Jl. Raya Aneka Tambang',
                 'store_subdistrict' => 'Cikaret',
@@ -177,6 +205,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Palakali Raya',
                 'store_street_address' => 'Jl. Palakali Raya',
                 'store_subdistrict' => 'Kukusan',
@@ -186,6 +215,7 @@ class StoreDimensionSeeder extends Seeder
             ],
 
             [
+                'store_key' => $this->getIncrement(),
                 'store_name' => 'Abdul Rohim',
                 'store_street_address' => 'Jl. Abdul Rohim',
                 'store_subdistrict' => 'Bojongsari Baru',

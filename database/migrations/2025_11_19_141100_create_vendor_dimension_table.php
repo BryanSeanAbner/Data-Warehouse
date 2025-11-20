@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payment_method_dimension', function (Blueprint $table) {
-            $table->unsignedInteger('payment_method_key')->primary();
-            $table->string('payment_method_description');
-            $table->string('payment_method_group');
+        Schema::create('vendor_dimension', function (Blueprint $table) {
+            $table->unsignedInteger('vendor_key')->primary();
+            $table->string('vendor_name');
+            $table->string('vendor_address');
+            $table->string('vendor_city');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payment_method_dimension');
+        Schema::dropIfExists('vendor_dimension');
     }
 };

@@ -44,7 +44,7 @@ class RetailSalesFactSeeder extends Seeder
 
     private function _getPromotionKey(int $productKey, int $dateKey): int {
         if ($productKey % 2 == 0) {  // no promotion
-            return 1;
+            return 0;
         } else {  // item is said to be promoted
             return random_int(2, 10);
         }
@@ -143,6 +143,10 @@ class RetailSalesFactSeeder extends Seeder
     {
         $dates = DB::table("date_dimension")->get();
         foreach ($dates as $date) {
+            if ($date->date_key === 0) {
+                continue;
+            }
+
             $dateKey = $date->date_key;
             $countTransaction = $this->_getCountTransaction($dateKey);
             for ($iTransaction = 0; $iTransaction < $countTransaction; $iTransaction++) {

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('store_dimension', function (Blueprint $table) {
-            $table->increments('store_key');
+            $table->unsignedInteger('store_key')->primary();
             $table->string('store_name');
             $table->string('store_street_address');
             $table->string('store_subdistrict');

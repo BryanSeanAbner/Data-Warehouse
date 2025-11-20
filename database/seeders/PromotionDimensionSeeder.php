@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\AutoIncrementSeeder;
 
-class PromotionDimensionSeeder extends Seeder
+class PromotionDimensionSeeder extends AutoIncrementSeeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +15,15 @@ class PromotionDimensionSeeder extends Seeder
     {
         DB::table('promotion_dimension')->insert([
             [
-                'promotion_code' => 'NA',
+                'promotion_key' => 0,
+                'promotion_code' => 'Not Applicable',
                 'promotion_name' => 'No Promotion',
                 'promotion_media_type' => 'Not Applicable',
                 'promotion_begin_date' => "9999-12-31",
                 'promotion_end_date' => "9999-12-31",
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'NEW',
                 'promotion_name' => 'New Years Eve',
                 'promotion_media_type' => 'In-store',
@@ -28,6 +31,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-01-04',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'VAL',
                 'promotion_name' => 'Valentine Day',
                 'promotion_media_type' => 'In-store',
@@ -35,6 +39,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-02-28',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'EAS',
                 'promotion_name' => 'Easter',
                 'promotion_media_type' => 'In-store',
@@ -42,6 +47,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-04-23',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'HAL',
                 'promotion_name' => 'Halloween',
                 'promotion_media_type' => 'In-store',
@@ -49,6 +55,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-11-10',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'CHR',
                 'promotion_name' => 'Christmas',
                 'promotion_media_type' => 'In-store',
@@ -56,6 +63,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-12-28',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'CHI',
                 'promotion_name' => 'Chinese New Year',
                 'promotion_media_type' => 'In-store',
@@ -63,6 +71,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-02-11',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'PAT',
                 'promotion_name' => 'St. Patrick Day',
                 'promotion_media_type' => 'In-store',
@@ -70,6 +79,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-03-20',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'EID',
                 'promotion_name' => 'Eid Mubarak',
                 'promotion_media_type' => 'In-store',
@@ -77,6 +87,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-04-05',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'SCH',
                 'promotion_name' => 'Back to School',
                 'promotion_media_type' => 'Flyer',
@@ -84,6 +95,7 @@ class PromotionDimensionSeeder extends Seeder
                 'promotion_end_date' => '2025-07-29',
             ],
             [
+                'promotion_key' => $this->getIncrement(),
                 'promotion_code' => 'ANN',
                 'promotion_name' => 'Anniversary',
                 'promotion_media_type' => 'Flyer',

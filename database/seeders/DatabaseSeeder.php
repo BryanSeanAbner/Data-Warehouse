@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
             StoreDimensionSeeder::class,
             PaymentMethodDimensionSeeder::class,
             RetailSalesFactSeeder::class,
+            VendorSeeder::class,
+            WarehouseSeeder::class,
+            InventoryPeriodicSeeder::class,
+            InventoryAccumulatingSeeder::class,
         ]);
 
     }
