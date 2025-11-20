@@ -14,6 +14,8 @@ class InventoryAccumulatingSeeder extends Seeder
      */
     public function run(): void
     {
+        mt_srand(12345);
+        
         $receiptI = 163;
         $warehouses = DB::table('warehouse_dimension')->get();
 
@@ -29,10 +31,10 @@ class InventoryAccumulatingSeeder extends Seeder
                 $productLotReceiptNumber = "LR" . str($receiptI);
                 $receiptI += 1;
 
-                if ($date->date_key < 20251206 and random_int(0, 5) === 0) {
-                    for ($i = 0; $i < random_int(1, 4); $i++) {
-                        $productKey = random_int(1, 50);
-				        $vendorKey = random_int(1, 3);
+                if ($date->date_key < 20251206 and mt_rand(0, 5) === 0) {
+                    for ($i = 0; $i < mt_rand(1, 4); $i++) {
+                        $productKey = mt_rand(1, 50);
+				        $vendorKey = mt_rand(1, 3);
 
                         $dateInspected = null;
                         $dateBinPlacement = null;
@@ -45,7 +47,7 @@ class InventoryAccumulatingSeeder extends Seeder
                         $dateInitialShipmentKey = 0;
                         $dateLastShipmentKey = 0;
 
-                        $quantityReceived = random_int(7, 15);
+                        $quantityReceived = mt_rand(7, 15);
                         $quantityInspected = null;
                         $quantityPlacedInBin = null;
                         $quantityShippedToCustomer = null;
@@ -54,35 +56,39 @@ class InventoryAccumulatingSeeder extends Seeder
                         $receiptToBinPlacementLag = null;
                         $receiptToInitialShipmentLag = null;
                         $initialToLastShipmentLag = null;
-
-                        $rng = random_int(0, 4);
+                        
+                        if ($date->date_key >= 20251116) {
+                            $rng = mt_rand(0, 4);
+                        } else {
+                            $rng = 4;
+                        }
 
                         if ($rng > 0) {
-                            if (random_int(0, 18) === 0) {
+                            if (mt_rand(0, 18) === 0) {
                                 $quantityInspected = $quantityReceived - 1;
                             } else {
                                 $quantityInspected = $quantityReceived;
                             }
-                            $receiptToInspectedLag = random_int(1, 3);
+                            $receiptToInspectedLag = mt_rand(1, 3);
                             $dateInspected = Carbon::parse($date->date)->addDays($receiptToInspectedLag);
                             $dateInspectedKey = (int)$dateInspected->format('Ymd');
                         }
 
                         if ($rng > 1) {
-                            if (random_int(0, 20) === 0) {
-                                $quantityPlacedInBin = $quantityInspected - random_int(1, 2);
+                            if (mt_rand(0, 20) === 0) {
+                                $quantityPlacedInBin = $quantityInspected - mt_rand(1, 2);
                             } else {
                                 $quantityPlacedInBin = $quantityInspected;
                             }
-                            $inspectedToBinPlacementLag = random_int(1, 2);
+                            $inspectedToBinPlacementLag = mt_rand(1, 2);
                             $receiptToBinPlacementLag = $receiptToInspectedLag + $inspectedToBinPlacementLag;
                             $dateBinPlacement = $dateInspected->addDays($inspectedToBinPlacementLag);
                             $dateBinPlacementKey = (int)$dateBinPlacement->format('Ymd');
                         }
 
                         if ($rng > 2) {
-					        $quantityShippedToCustomer = $quantityPlacedInBin - random_int(1, 3);
-					        $binPlacementToInitialShipmentLag = random_int(2, 6);
+					        $quantityShippedToCustomer = $quantityPlacedInBin - mt_rand(1, 3);
+					        $binPlacementToInitialShipmentLag = mt_rand(2, 6);
 					        $receiptToInitialShipmentLag = $receiptToBinPlacementLag + $binPlacementToInitialShipmentLag;
                             $dateInitialShipment = $dateBinPlacement->addDays($binPlacementToInitialShipmentLag);
                             $dateInitialShipmentKey = (int)$dateInitialShipment->format('Ymd');
@@ -90,7 +96,7 @@ class InventoryAccumulatingSeeder extends Seeder
 
                         if ($rng > 3) {
                             $quantityShippedToCustomer = $quantityPlacedInBin;
-                            $initialToLastShipmentLag = random_int(1, 4);
+                            $initialToLastShipmentLag = mt_rand(1, 4);
                             $dateLastShipment = $dateInitialShipment->addDays($initialToLastShipmentLag);
                             $dateLastShipmentKey = (int)$dateLastShipment->format('Ymd');
                         }
