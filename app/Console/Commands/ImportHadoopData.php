@@ -26,11 +26,11 @@ class ImportHadoopData extends Command
         $path = storage_path("hadoop/processed/{$filename}");
         
         if (!file_exists($path)) {
-            $this->error("❌ File not found: {$path}");
+            $this->error(" File not found: {$path}");
             return Command::FAILURE;
         }
 
-        $this->info("📖 Reading Hadoop output: {$filename}");
+        $this->info(" Reading Hadoop output: {$filename}");
         
         // Disable foreign key checks untuk import
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -38,7 +38,7 @@ class ImportHadoopData extends Command
         $handle = fopen($path, 'r');
         
         if (!$handle) {
-            $this->error("❌ Cannot open file: {$path}");
+            $this->error(" Cannot open file: {$path}");
             return Command::FAILURE;
         }
 
@@ -75,7 +75,7 @@ class ImportHadoopData extends Command
                     'regular_unit_price' => round($gross / $qty, 2),
                     'discount_unit_price' => round($discount / $qty, 2),
                     'net_unit_price' => round($net / $qty, 2),
-                    'unit_cost' => round($net / $qty * 0.7, 2), // Asumsi margin 30%
+                    'unit_cost' => round($net / $qty * 0.7, 2), 
                     'extended_discount_amount' => $discount,
                     'extended_sales_amount' => $net,
                     'extended_cost_amount' => $net * 0.7,
@@ -93,7 +93,7 @@ class ImportHadoopData extends Command
                 
             } catch (\Exception $e) {
                 $errors++;
-                $this->warn("\n⚠️  Error parsing line: " . $e->getMessage());
+                $this->warn("\n  Error parsing line: " . $e->getMessage());
             }
         }
 
@@ -111,7 +111,7 @@ class ImportHadoopData extends Command
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         $this->newLine(2);
-        $this->info("✅ Import completed!");
+        $this->info(" Import completed!");
         $this->table(
             ['Metric', 'Value'],
             [
