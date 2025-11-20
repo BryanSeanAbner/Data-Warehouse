@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class RetailSalesFactSeeder extends Seeder
 {   
+    private int $_transactionId = 10320;
+
     private function _isHoliday(int $dateKey): bool {
         if (DB::table("date_dimension")->where("date_key", $dateKey)->first()->holiday_indicator) {
             return true;
@@ -93,9 +95,9 @@ class RetailSalesFactSeeder extends Seeder
     private function _getUnitCost(int $productKey): float {
         if ($productKey < 24) {
             if ($productKey % 2 == 0) {
-                return $this->_getRegularUnitPrice($productKey) - 600;
+                return $this->_getRegularUnitPrice($productKey) * 0.8 - 600;
             } else {
-                return $this->_getRegularUnitPrice($productKey) * 0.85 - 500;
+                return $this->_getRegularUnitPrice($productKey) * 0.75 - 500;
             }
         } elseif ($productKey < 37) {
             return $this->_getRegularUnitPrice($productKey) * 0.9 - 4000;
@@ -134,6 +136,11 @@ class RetailSalesFactSeeder extends Seeder
 
     private function _getExtendedGrossMarginAMount(float $extendedGrossProfitAmount, float $extendedSalesAmount): float {
         return $extendedGrossProfitAmount / $extendedSalesAmount;
+    }
+
+    private function _getTransactionId(): int {
+        $this->_transactionId += 1;
+        return $this->_transactionId - 1;
     }
 
     /**
@@ -178,7 +185,7 @@ class RetailSalesFactSeeder extends Seeder
                         "cashier_key" => $cashierKey,
                         "promotion_key" => $promotionKey,
                         "payment_method_key" => $paymentMethodKey,
-                        "transaction_id" => $iTransaction,
+                        "transaction_id" => $this->_getTransactionId(),
                         "sales_quantity" => $salesQuantity,
                         "regular_unit_price" => $regularUnitPrice,
                         "unit_cost" => $unitCost,
