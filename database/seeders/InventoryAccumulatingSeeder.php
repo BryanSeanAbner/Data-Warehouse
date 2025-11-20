@@ -105,7 +105,7 @@ class InventoryAccumulatingSeeder extends Seeder
                             $quantityShippedToCustomer = $quantityPlacedInBin;
                             $initialToLastShipmentLag = mt_rand(1, 4);
                             if ($warehouseKey % 2 == 0) {
-                                $initialToLastShipmentLag += 1;
+                                $initialToLastShipmentLag += 3;
                             }
                             $dateLastShipment = $dateInitialShipment->addDays($initialToLastShipmentLag);
                             $dateLastShipmentKey = (int)$dateLastShipment->format('Ymd');

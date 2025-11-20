@@ -1,0 +1,13 @@
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --success: #10b981;
+    --warning: #f59e0b;
+}
+body { background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%); }
+.sidebar { background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); }
+.card-hover { transition: all 0.3s ease; }
+.card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+.btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(99,102,241,0.3); }
+.chart-wrapper { height: 420px; position: relative; }
