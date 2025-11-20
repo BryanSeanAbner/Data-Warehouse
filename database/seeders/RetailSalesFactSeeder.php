@@ -44,7 +44,7 @@ class RetailSalesFactSeeder extends Seeder
 
     private function _getPromotionKey(int $productKey, int $dateKey): int {
         if ($productKey % 2 == 0) {  // no promotion
-            return 0;
+            return 1;  // Changed from 0 to 1 (NA promotion)
         } else {  // item is said to be promoted
             return mt_rand(2, 10);
         }
