@@ -29,10 +29,10 @@ def get_count_unique_products(date_key: int) -> int:
     return count_unique_products
 
 def get_product_key() -> int:
-    return random_int(1, 50)
+    return mt_rand(1, 50)
 
 def get_store_cashier_key() -> tuple[int, int]:
-    cashier = random_int(1, 40)
+    cashier = mt_rand(1, 40)
     store = (i - 1) // 2 + 1
     return tuple(store, cashier)
 
@@ -44,9 +44,9 @@ def get_payment_method_key(store_key: int) -> int:
 
 def get_sales_quantity(product_key: int, promotion_key: int) -> int:
     if promotion_key.promotion_code != "NA":
-        return random_int(1, 7)
+        return mt_rand(1, 7)
     else:
-        return random_int(1, 4)
+        return mt_rand(1, 4)
 
 def get_regular_unit_price(product_key: int) -> float:
     regular_unit_price = 12000

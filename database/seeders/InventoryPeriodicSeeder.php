@@ -11,8 +11,10 @@ class InventoryPeriodicSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(): void 
     {
+        mt_srand(12345);
+        
         $stores = DB::table('store_dimension')->get();
         $stores = $stores->slice(0, 2);
 
@@ -46,16 +48,16 @@ class InventoryPeriodicSeeder extends Seeder
                     $dayOfWeek = $date->day_of_week;
 
                     if ($qoh === null) {
-                        $qoh = random_int(10, 20);
+                        $qoh = mt_rand(10, 20);
                     } else {
                         $qoh = $fqoh;
                     }
                     if ($dayOfWeek === "Monday") {
-                        $qoh += random_int(7, 17);
+                        $qoh += mt_rand(7, 17);
                         $qoh = min($qoh, 30);
                     }
 
-                    $qos = random_int(0, 4);
+                    $qos = mt_rand(0, 4);
 			        while ($qos > $qoh) {
                         $qos -= 1;
                     }

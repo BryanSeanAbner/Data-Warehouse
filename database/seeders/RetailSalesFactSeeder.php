@@ -17,27 +17,27 @@ class RetailSalesFactSeeder extends Seeder
     }
 
     private function _getCountTransaction(int $dateKey): int {
-        $countTransaction = random_int(0, 3);
+        $countTransaction = mt_rand(0, 3);
         if ($this->_isHoliday($dateKey)) {
-            $countTransaction += random_int(1, 3);
+            $countTransaction += mt_rand(1, 3);
         }
         return $countTransaction;
     }
 
     private function _getCountUniqueProducts(int $dateKey): int {
-        $countUniqueProducts = random_int(1, 4);
+        $countUniqueProducts = mt_rand(1, 4);
         if ($this->_isHoliday($dateKey)) {
-            $countUniqueProducts += random_int(1, 2);
+            $countUniqueProducts += mt_rand(1, 2);
         }
         return $countUniqueProducts;
     }
 
     private function _getProductKey(): int {
-        return random_int(1, 50);
+        return mt_rand(1, 50);
     }
 
     private function _getStoreCashierKey(): array {
-        $cashier = random_int(1, 40);
+        $cashier = mt_rand(1, 40);
         $store =  intdiv(($cashier - 1), 2) + 1;
         return array($store, $cashier);
     }
@@ -46,23 +46,23 @@ class RetailSalesFactSeeder extends Seeder
         if ($productKey % 2 == 0) {  // no promotion
             return 0;
         } else {  // item is said to be promoted
-            return random_int(2, 10);
+            return mt_rand(2, 10);
         }
     }
 
     private function _getPaymentMethodKey(int $storeKey): int {
         if ($storeKey % 2 == 0) {
-            return random_int(1, 3);
+            return mt_rand(1, 3);
         } else {
-            return random_int(2, 8);
+            return mt_rand(2, 8);
         }
     }
 
     private function _getSalesQuantity(int $productKey, int $promotionKey): int {
         if (DB::table("promotion_dimension")->where("promotion_key", $promotionKey)->first()->promotion_code != "NA") {
-            return random_int(1, 7);
+            return mt_rand(1, 7);
         } else {
-            return random_int(1, 4);
+            return mt_rand(1, 4);
         }
     }
 
@@ -141,6 +141,8 @@ class RetailSalesFactSeeder extends Seeder
      */
     public function run(): void
     {
+        mt_srand(12345);
+
         $dates = DB::table("date_dimension")->get();
         foreach ($dates as $date) {
             if ($date->date_key === 0) {
