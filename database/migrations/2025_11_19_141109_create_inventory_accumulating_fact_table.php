@@ -75,6 +75,7 @@ return new class extends Migration
             $table->unsignedInteger('receipt_to_bin_placement_lag')->nullable();
             $table->unsignedInteger('receipt_to_initial_shipment_lag')->nullable();
             $table->unsignedInteger('initial_to_last_shipment_lag')->nullable();
+			$table->unsignedInteger('receipt_to_last_shipment_lag')->nullable();
         });
     }
 
