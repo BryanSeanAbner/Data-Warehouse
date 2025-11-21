@@ -51,16 +51,16 @@ return new class extends Migration
 				->onDelete('cascade');
 			
 			$table->integer('transaction_id');
-			$table->integer('sales_quantity');
-			$table->decimal('regular_unit_price', 10, 2);
-			$table->decimal('unit_cost', 10, 2);
-			$table->decimal('discount_unit_price', 10, 2);
-			$table->decimal('net_unit_price', 10, 2);
-			$table->decimal('extended_discount_amount', 10, 2);
-			$table->decimal('extended_sales_amount', 10, 2);
-			$table->decimal('extended_cost_amount', 10, 2);
-			$table->decimal('extended_gross_profit_amount', 10, 2);
-			$table->decimal('extended_gross_margin_amount', 10, 2);
+			$table->integer('sales_quantity');  // asumsi dari POS
+			$table->decimal('regular_unit_price', 10, 2);  // asumsi dari POS
+			$table->decimal('unit_cost', 10, 2);  // asumsi dari POS
+			$table->decimal('discount_unit_price', 10, 2);  // asumsi dari POS
+			$table->decimal('net_unit_price', 10, 2);  // regular_unit_price - discount_unit_price
+			$table->decimal('extended_discount_amount', 10, 2);  // sales_quantity * discount_unit_price
+			$table->decimal('extended_sales_amount', 10, 2);  // sales_quantity * net_unit_price
+			$table->decimal('extended_cost_amount', 10, 2);  // sales_quantity * unit_cost
+			$table->decimal('extended_gross_profit_amount', 10, 2);  // extended_sales_amount - extended_cost_amount
+			$table->decimal('extended_gross_margin_amount', 10, 2);  // extended_gross_profit_amount / extended_sales_amount
 
 			// Tambahkan index untuk performa query
 			$table->index(['date_key', 'product_key', 'store_key']);

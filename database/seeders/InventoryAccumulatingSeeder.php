@@ -31,7 +31,7 @@ class InventoryAccumulatingSeeder extends Seeder
                 $productLotReceiptNumber = "LR" . str($receiptI);
                 $receiptI += 1;
 
-                if ($date->date_key < 20251206 and mt_rand(0, 5) === 0) {
+                if (($date->date_key < 20251210 and mt_rand(0, 5) === 0)) {
                     for ($i = 0; $i < mt_rand(1, 4); $i++) {
                         $productKey = mt_rand(1, 50);
 				        $vendorKey = mt_rand(1, 3);
@@ -56,8 +56,9 @@ class InventoryAccumulatingSeeder extends Seeder
                         $receiptToBinPlacementLag = null;
                         $receiptToInitialShipmentLag = null;
                         $initialToLastShipmentLag = null;
+                        $receiptToLastShipmentLag = null;
                         
-                        if ($date->date_key >= 20251116) {
+                        if ($date->date_key >= 20251113) {
                             $rng = mt_rand(0, 4);
                         } else {
                             $rng = 4;
@@ -70,6 +71,9 @@ class InventoryAccumulatingSeeder extends Seeder
                                 $quantityInspected = $quantityReceived;
                             }
                             $receiptToInspectedLag = mt_rand(1, 3);
+                            if ($warehouseKey % 2 == 0) {
+                                $receiptToInspectedLag += mt_rand(0, 2);
+                            }
                             $dateInspected = Carbon::parse($date->date)->addDays($receiptToInspectedLag);
                             $dateInspectedKey = (int)$dateInspected->format('Ymd');
                         }
@@ -81,6 +85,9 @@ class InventoryAccumulatingSeeder extends Seeder
                                 $quantityPlacedInBin = $quantityInspected;
                             }
                             $inspectedToBinPlacementLag = mt_rand(1, 2);
+                            if ($warehouseKey % 2 == 0) {
+                                $inspectedToBinPlacementLag += mt_rand(0, 2);
+                            }
                             $receiptToBinPlacementLag = $receiptToInspectedLag + $inspectedToBinPlacementLag;
                             $dateBinPlacement = $dateInspected->addDays($inspectedToBinPlacementLag);
                             $dateBinPlacementKey = (int)$dateBinPlacement->format('Ymd');
@@ -89,6 +96,9 @@ class InventoryAccumulatingSeeder extends Seeder
                         if ($rng > 2) {
 					        $quantityShippedToCustomer = $quantityPlacedInBin - mt_rand(1, 3);
 					        $binPlacementToInitialShipmentLag = mt_rand(2, 6);
+                            if ($warehouseKey % 2 == 0) {
+                                $binPlacementToInitialShipmentLag += 3;
+                            }
 					        $receiptToInitialShipmentLag = $receiptToBinPlacementLag + $binPlacementToInitialShipmentLag;
                             $dateInitialShipment = $dateBinPlacement->addDays($binPlacementToInitialShipmentLag);
                             $dateInitialShipmentKey = (int)$dateInitialShipment->format('Ymd');
@@ -97,8 +107,13 @@ class InventoryAccumulatingSeeder extends Seeder
                         if ($rng > 3) {
                             $quantityShippedToCustomer = $quantityPlacedInBin;
                             $initialToLastShipmentLag = mt_rand(1, 4);
+                            if ($warehouseKey % 2 == 0) {
+$initialToLastShipmentLag += 3;
+                            }
                             $dateLastShipment = $dateInitialShipment->addDays($initialToLastShipmentLag);
                             $dateLastShipmentKey = (int)$dateLastShipment->format('Ymd');
+
+                            $receiptToLastShipmentLag = $receiptToInitialShipmentLag + $initialToLastShipmentLag;
                         }
 
                         DB::table('inventory_accumulating_fact')->insert([
@@ -118,7 +133,8 @@ class InventoryAccumulatingSeeder extends Seeder
                             'receipt_to_inspected_lag' => $receiptToInspectedLag,
                             'receipt_to_bin_placement_lag' => $receiptToBinPlacementLag,
                             'receipt_to_initial_shipment_lag' => $receiptToInitialShipmentLag,
-                            'initial_to_last_shipment_lag' => $initialToLastShipmentLag
+                            'initial_to_last_shipment_lag' => $initialToLastShipmentLag,
+                            'receipt_to_last_shipment_lag' => $receiptToLastShipmentLag,
                         ]);
                     }
                 }

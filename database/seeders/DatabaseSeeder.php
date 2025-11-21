@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             WarehouseSeeder::class,
             InventoryPeriodicSeeder::class,
             InventoryAccumulatingSeeder::class,
+            PromotionFactlessSeeder::class,
         ]);
 
     }

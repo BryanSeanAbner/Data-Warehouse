@@ -1,307 +1,225 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Retail Sales</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-50">
-    <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-slate-900 text-white flex flex-col">
-            <!-- Logo/Header -->
-            <div class="px-6 py-4 border-b border-slate-800">
-                <h1 class="text-xl font-bold leading-tight">Data Warehouse</h1>
-                <p class="text-sm text-slate-400 leading-tight">Stationery Store</p>
+<x-layout :includeChartJs="true">
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+        <div class="bg-white rounded-2xl shadow-lg p-8 card-hover border-l-8 border-l-blue-500">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total Records</p>
+                    <p class="text-3xl font-extrabold text-gray-800 mt-2 font-mono">
+                        {{ number_format($totalRecords, 0, ',', '.') }}
+                    </p>
+                    <p class="text-xs text-gray-500 mt-2">Total transaksi</p>
+                </div>
+                <i class="fas fa-file-invoice-dollar text-6xl text-blue-500 opacity-20"></i>
             </div>
-            
-            <!-- Navigation -->
-            <nav class="flex-1 px-4 py-6 space-y-5">
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition-colors">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span class="text-sm">Dashboard</span>
-                </a>
+        </div>
 
-                <a href="{{ route('sales_fact_table') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition-colors">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span class="text-sm">Sales Fact Table</span>
-                </a>
-
-                <a href="{{ route('sales_fact_table') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition-colors">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span class="text-sm">Inventory Fact Table</span>
-                </a>
-
-                <a href="{{ route('sales_fact_table') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition-colors">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span class="text-sm">Promotion</span>
-                </a>
-
-                <a href="{{ route('sales_fact_table') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition-colors">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span class="text-sm">Snap Shot</span>
-                </a>
-
-                <div class="pt-4 border-t border-slate-800">
-                    <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">ETL Tools</p>
-                    <a href="{{ route('hadoop.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition-colors">
-                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                        </svg>
-                        <span class="text-sm">Hadoop ETL</span>
-                    </a>
+        <div class="bg-white rounded-2xl shadow-lg p-8 card-hover border-l-8 border-l-green-500">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total Gross Profit</p>
+                    <p class="text-3xl font-extrabold text-gray-800 mt-2 font-mono">
+                        Rp {{ number_format($totalGrossProfit, 0, ',', '.') }}
+                    </p>
+                    <p class="text-xs text-gray-500 mt-2">Keseluruhan profit</p>
                 </div>
-            </nav>
-
-            <!-- Footer -->
-            <div class="px-4 py-3 border-t border-slate-800">
-                <p class="text-xs text-slate-400">© 2025 Stationery Store</p>
+                <i class="fas fa-sack-dollar text-6xl text-green-500 opacity-20"></i>
             </div>
-        </aside>
+        </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-
-            <!-- Top Bar -->
-            <header class="bg-white border-b border-gray-200 px-6 py-4">
-                <h2 class="text-2xl font-bold text-gray-900">Dashboard</h2>
-                <p class="text-sm text-gray-600 mt-1">Ringkasan Data Penjualan Stationery Store</p>
-            </header>
-
-            <!-- Content Area -->
-            <main class="flex-1 overflow-y-auto p-6">
-        
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-
-                    <!-- Total Records -->
-                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 border-l-8 border-l-blue-500 w-[350px]">
-                        <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Records</h3>
-                        <div class="text-3xl font-bold text-gray-900">
-                            {{ number_format($totalRecords, 0, ',', '.') }}
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Total transaksi</p>
-                    </div>
-
-                    <!-- Total Gross Profit -->
-                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 border-l-8 border-l-green-500 w-[350px]">
-                        <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Gross Profit</h3>
-                        <div class="text-3xl font-bold text-gray-900 font-mono">
-                            Rp {{ number_format($totalGrossProfit, 0, ',', '.') }}
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Keseluruhan profit</p>
-                    </div>
-
-                    <!-- Rata-rata Gross Profit -->
-                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 border-l-8 border-l-yellow-500 w-[350px]">
-                        <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Rata-rata Gross Profit</h3>
-                        <div class="text-3xl font-bold text-gray-900 font-mono">
-                            Rp {{ number_format($avgGrossProfit, 0, ',', '.') }}
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Per transaksi</p>
-                    </div>
-
+        <div class="bg-white rounded-2xl shadow-lg p-8 card-hover border-l-8 border-l-amber-500">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Rata-rata Gross Profit</p>
+                    <p class="text-3xl font-extrabold text-gray-800 mt-2 font-mono">
+                        Rp {{ number_format($avgGrossProfit, 0, ',', '.') }}
+                    </p>
+                    <p class="text-xs text-gray-500 mt-2">Per transaksi</p>
                 </div>
-
-                <!-- Filter Form dengan Date Picker -->
-                <h2 class="text-2xl font-bold text-gray-900 mb-5">Chart</h2>
-                <form method="GET" action="{{ route('dashboard') }}" class="space-y-4 bg-white p-4 rounded-xl shadow-sm mb-6">
-
-                    <div class="flex gap-4">
-
-                        <!-- Product Dropdown -->
-                        <div class="flex flex-col w-1/3">
-                            <label class="text-sm text-gray-600 mb-1">Produk</label>
-                            <select name="product_key" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="">Semua Produk</option>
-                                @foreach($products as $p)
-                                    <option value="{{ $p->product_key }}"
-                                        {{ request('product_key') == $p->product_key ? 'selected' : '' }}>
-                                        {{ $p->product_description }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Start Date Picker -->
-                        <div class="flex flex-col w-1/3">
-                            <label class="text-sm text-gray-600 mb-1">Tanggal Mulai</label>
-                            <input 
-                                type="date" 
-                                name="start_date" 
-                                value="{{ request('start_date') }}"
-                                class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            >
-                        </div>
-
-                        <!-- End Date Picker -->
-                        <div class="flex flex-col w-1/3">
-                            <label class="text-sm text-gray-600 mb-1">Tanggal Selesai</label>
-                            <input 
-                                type="date" 
-                                name="end_date" 
-                                value="{{ request('end_date') }}"
-                                class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            >
-                        </div>
-
-                    </div>
-
-                    <div class="flex gap-2">
-                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors font-medium">
-                            Terapkan Filter
-                        </button>
-                        <a href="{{ route('dashboard') }}" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg text-sm hover:bg-gray-300 transition-colors font-medium">
-                            Reset Filter
-                        </a>
-                    </div>
-                </form>
-
-                <!-- Chart Container -->
-                @if(isset($chartData) && !empty($chartData))
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Gross Profit per Store</h3>
-                    <div class="chart-wrapper">
-                        <canvas id="grossProfitChart"></canvas>
-                    </div>
-                </div>
-                @endif
-
-            </main>
+                <i class="fas fa-arrow-trend-up text-6xl text-amber-500 opacity-20"></i>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-    <script>
-    let myChart = null;
+    <!-- Filter Form Chart Gross Profit per Store -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <i class="fas fa-chart-bar text-indigo-600"></i> Chart Gross Profit per Store
+        </h2>
 
-    // Data awal dari server
-    const initialData = @json($chartData ?? null);
+        <form method="GET" action="{{ route('dashboard') }}" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Produk</label>
+                <select name="gross_product_key" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 transition">
+                    <option value="">Semua Produk</option>
+                    @foreach($products as $p)
+                        <option value="{{ $p->product_key }}" {{ request('gross_product_key') == $p->product_key ? 'selected' : '' }}>
+                            {{ $p->product_description }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-    // Inisialisasi chart
-    function initChart(data) {
-        if (!data || !data.labels || !data.values) {
-            console.log('No chart data available');
-            return;
-        }
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Mulai</label>
+                <input type="date" name="gross_start_date" value="{{ request('gross_start_date') }}"
+                       class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500">
+            </div>
 
-        const canvas = document.getElementById('grossProfitChart');
-        if (!canvas) {
-            console.log('Canvas element not found');
-            return;
-        }
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Selesai</label>
+                <input type="date" name="gross_end_date" value="{{ request('gross_end_date') }}"
+                       class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500">
+            </div>
 
-        const ctx = canvas.getContext('2d');
-        
-        // Destroy chart sebelumnya jika ada
-        if (myChart) {
-            myChart.destroy();
-        }
-        
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Gross Profit per Store',
-                    data: data.values,
-                    backgroundColor: 'rgba(34, 197, 94, 0.6)',
-                    borderColor: 'rgba(34, 197, 94, 1)',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: function(context) {
-                                const index = context[0].dataIndex;
-                                return data.store_names && data.store_names[index] 
-                                    ? data.store_names[index] 
-                                    : 'Store ' + data.labels[index];
-                            },
-                            label: function(context) {
-                                return 'Gross Profit: Rp ' + context.parsed.y.toLocaleString('id-ID');
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Store ID'
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Gross Profit (Rp)'
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return 'Rp ' + value.toLocaleString('id-ID');
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
+            <div class="flex items-end gap-3">
+                <button type="submit" class="btn-primary text-white px-8 py-3 rounded-xl font-semibold shadow-lg flex items-center gap-2">
+                    <i class="fas fa-filter"></i> Terapkan
+                </button>
+                <a href="{{ route('dashboard') }}" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-300 transition font-medium">
+                    Reset
+                </a>
+            </div>
+            <input type="hidden" name="inventory_product_key" value="{{ request('inventory_product_key') }}">
+            <input type="hidden" name="inventory_start_date" value="{{ request('inventory_start_date') }}">
+            <input type="hidden" name="inventory_end_date" value="{{ request('inventory_end_date') }}">
+            <input type="hidden" name="inventory_store_key" value="{{ request('inventory_store_key') }}">
+        </form>
+    </div>
 
-    // Load chart setelah DOM ready
-    document.addEventListener('DOMContentLoaded', function() {
-        if (initialData) {
-            initChart(initialData);
-        }
-    });
-    </script>
+    <!-- Chart Gross Profit -->
+    @if(request('gross_product_key') || request('gross_start_date') || request('gross_end_date'))
+        @if(isset($chartData) && !empty($chartData) && !empty($chartData['values']))
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <div class="chart-wrapper">
+                    <canvas id="grossProfitChart"></canvas>
+                </div>
+            </div>
+        @else
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <div class="text-center py-12">
+                    <i class="fas fa-inbox text-5xl text-slate-300 mb-2"></i>
+                    <p class="text-slate-500 text-base">Tidak ada data yang ditemukan untuk filter yang dipilih.</p>
+                </div>
+            </div>
+        @endif
+    @else
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div class="text-center py-12">
+                <i class="fas fa-info-circle text-6xl text-indigo-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Pilih Filter untuk Melihat Chart Gross Profit</h3>
+                <p class="text-slate-500">Silakan pilih produk atau rentang tanggal dari filter di atas untuk menampilkan analisis gross profit per store.</p>
+            </div>
+        </div>
+    @endif
 
-    <style>
-    .chart-container {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+    <!-- Filter Form Chart Quantity On Hand -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <i class="fas fa-chart-bar text-indigo-600"></i> Chart Quantity On Hand
+        </h2>
 
-    .chart-wrapper {
-        height: 400px;
-        margin-top: 20px;
-        position: relative;
-    }
+        <form method="GET" action="{{ route('dashboard') }}" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Produk</label>
+                <select name="inventory_product_key" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 transition">
+                    <option value="">Semua Produk</option>
+                    @foreach($products as $p)
+                        <option value="{{ $p->product_key }}" {{ request('inventory_product_key') == $p->product_key ? 'selected' : '' }}>
+                            {{ $p->product_description }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-    /* Styling untuk date picker */
-    input[type="date"] {
-        cursor: pointer;
-    }
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Store</label>
+                <select name="inventory_store_key" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 transition">
+                    <option value="">Semua Store</option>
+                    @foreach($stores as $store)
+                        <option value="{{ $store->store_key }}" {{ request('inventory_store_key') == $store->store_key ? 'selected' : '' }}>
+                            {{ $store->store_name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-        padding: 5px;
-    }
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Mulai</label>
+                <input type="date" name="inventory_start_date" value="{{ request('inventory_start_date') }}"
+                       class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500">
+            </div>
 
-    input[type="date"]:hover {
-        border-color: #3b82f6;
-    }
-    </style>
-</body>
-</html>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Selesai</label>
+                <input type="date" name="inventory_end_date" value="{{ request('inventory_end_date') }}"
+                       class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500">
+            </div>
+
+            <div class="flex items-end gap-3">
+                <button type="submit" class="btn-primary text-white px-8 py-3 rounded-xl font-semibold shadow-lg flex items-center gap-2">
+                    <i class="fas fa-filter"></i> Terapkan
+                </button>
+                <a href="{{ route('dashboard') }}" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-300 transition font-medium">
+                    Reset
+                </a>
+            </div>
+            <input type="hidden" name="gross_product_key" value="{{ request('gross_product_key') }}">
+            <input type="hidden" name="gross_start_date" value="{{ request('gross_start_date') }}">
+            <input type="hidden" name="gross_end_date" value="{{ request('gross_end_date') }}">
+        </form>
+    </div>
+
+    <!-- Chart Quantity Awal & Akhir Hari -->
+    @if(request('inventory_product_key') || request('inventory_store_key') || request('inventory_start_date') || request('inventory_end_date'))
+        @if((isset($chartAwal) && !empty($chartAwal) && !empty($chartAwal['values'])) || (isset($chartAkhir) && !empty($chartAkhir) && !empty($chartAkhir['values'])))
+            <div class="flex gap-6">
+                @if(isset($chartAwal) && !empty($chartAwal) && !empty($chartAwal['values']))
+                    <div class="bg-white rounded-2xl shadow-lg p-8 w-1/2">
+                        <h2 class="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">Quantity Awal Hari</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="chartAwal"></canvas>
+                        </div>
+                    </div>
+                @endif
+
+                @if(isset($chartAkhir) && !empty($chartAkhir) && !empty($chartAkhir['values']))
+                    <div class="bg-white rounded-2xl shadow-lg p-8 w-1/2">
+                        <h2 class="text-lg font-bold text-gray-800 mb-6 flex items-center gap-3">Quantity Akhir Hari</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="chartAkhir"></canvas>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        @else
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="text-center py-12">
+                    <i class="fas fa-inbox text-5xl text-slate-300 mb-2"></i>
+                    <p class="text-slate-500 text-base">Tidak ada data yang ditemukan untuk filter yang dipilih.</p>
+                </div>
+            </div>
+        @endif
+    @else
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="text-center py-12">
+                <i class="fas fa-info-circle text-6xl text-indigo-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Pilih Filter untuk Melihat Chart Quantity On Hand</h3>
+                <p class="text-slate-500">Silakan pilih produk, store, atau rentang tanggal dari filter di atas untuk menampilkan analisis quantity awal dan akhir hari.</p>
+            </div>
+        </div>
+    @endif
+
+    @slot('scripts')
+        <script>
+            // Pass data from Blade to JavaScript
+            window.dashboardData = {
+                grossProfit: @json((request('gross_product_key') || request('gross_start_date') || request('gross_end_date')) && isset($chartData) && !empty($chartData) && !empty($chartData['values']) ? $chartData : null),
+                chartAwal: @json((request('inventory_product_key') || request('inventory_store_key') || request('inventory_start_date') || request('inventory_end_date')) && isset($chartAwal) && !empty($chartAwal) && !empty($chartAwal['values']) ? $chartAwal : null),
+                chartAkhir: @json((request('inventory_product_key') || request('inventory_store_key') || request('inventory_start_date') || request('inventory_end_date')) && isset($chartAkhir) && !empty($chartAkhir) && !empty($chartAkhir['values']) ? $chartAkhir : null)
+            };
+        </script>
+        <script src="js/dashboard.js"></script>
+    @endslot
+</x-layout>
