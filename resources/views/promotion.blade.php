@@ -220,5 +220,81 @@
         </script>
         @endif
     @endslot
+
+    <!-- Tabel Produk yang Tidak Terjual -->
+    @if($promotionKey && isset($unsoldProducts))
+        <section class="glass-card rounded-3xl shadow-2xl border border-white/60 p-6 mt-6">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+                    <i class="fas fa-exclamation-triangle text-orange-600"></i> Produk yang Tidak Terjual pada Masa Promosi
+                </h2>
+                <p class="text-slate-500 text-sm">
+                    Menampilkan {{ $unsoldProducts->count() }} produk yang dipromosikan tetapi tidak terjual selama periode promosi
+                </p>
+            </div>
+
+            @if($unsoldProducts->count() > 0)
+                <div class="overflow-x-auto bg-white rounded-2xl border border-slate-100 shadow-inner">
+                    <table class="w-full">
+                        <thead class="bg-indigo-50 border-b-2 border-indigo-200">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-indigo-900 uppercase tracking-wider">
+                                    <i class="fas fa-barcode mr-2"></i>SKU
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-indigo-900 uppercase tracking-wider">
+                                    <i class="fas fa-box mr-2"></i>Deskripsi Produk
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-indigo-900 uppercase tracking-wider">
+                                    <i class="fas fa-tag mr-2"></i>Brand
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-indigo-900 uppercase tracking-wider">
+                                    <i class="fas fa-folder mr-2"></i>Kategori
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-indigo-900 uppercase tracking-wider">
+                                    <i class="fas fa-calendar-alt mr-2"></i>Periode Promosi
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            @foreach($unsoldProducts as $product)
+                                <tr class="hover:bg-indigo-50 transition-colors">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="text-sm font-medium text-slate-900">{{ $product->sku_number }}</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="text-sm text-slate-700">{{ $product->product_description }}</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="text-sm text-slate-600">{{ $product->brand_name }}</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="text-sm text-slate-600">{{ $product->category_name }}</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex flex-col">
+                                            <span class="text-xs text-slate-500">
+                                                {{ \Carbon\Carbon::parse($product->promotion_begin_date)->format('d M Y') }}
+                                            </span>
+                                            <span class="text-xs text-slate-400">s/d</span>
+                                            <span class="text-xs text-slate-500">
+                                                {{ \Carbon\Carbon::parse($product->promotion_end_date)->format('d M Y') }}
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="bg-white rounded-2xl p-12 border border-slate-100 shadow-inner text-center">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-check-circle text-4xl text-green-400"></i>
+                        <p class="text-slate-500 font-medium">Semua produk yang dipromosikan telah terjual selama periode promosi.</p>
+                    </div>
+                </div>
+            @endif
+        </section>
+    @endif
 </x-layout>
 
