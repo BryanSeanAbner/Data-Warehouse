@@ -107,7 +107,7 @@ class AccumulationInventory extends Controller
                 $query->addSelect([
                     'inventory_accumulating_fact.date_last_shipment_key as date_key',
                     'inventory_accumulating_fact.quantity_shipped_to_customer as quantity',
-                    'inventory_accumulating_fact.initial_to_last_shipment_lag as receipt_lag'
+                    'inventory_accumulating_fact.receipt_to_last_shipment_lag as receipt_lag'
                 ])
                 ->where('inventory_accumulating_fact.date_last_shipment_key', '!=', 0)
                 ->orderBy('inventory_accumulating_fact.date_last_shipment_key', 'desc');
