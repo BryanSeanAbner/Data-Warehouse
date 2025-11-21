@@ -47,8 +47,8 @@
                             <td class="px-6 py-4 text-sm text-slate-700">{{ $date->calendar_year }}</td>
                             <td class="px-6 py-4 text-sm text-slate-700">{{ $date->fiscal_year_quarter }}</td>
                             <td class="px-6 py-4 text-sm">
-                                <span class="inline-flex px-3 py-1 rounded-full text-xs font-medium {{ $date->holiday_indicator === 'Y' ? 'bg-rose-100 text-rose-600' : 'bg-slate-100 text-slate-500' }}">
-                                    {{ $date->holiday_indicator === 'Y' ? 'Holiday' : 'Non-holiday' }}
+                                <span class="inline-flex px-3 py-1 rounded-full text-xs font-medium {{ $date->holiday_indicator === 'Holiday' ? 'bg-rose-100 text-rose-600' : 'bg-slate-100 text-slate-500' }}">
+                                    {{ $date->holiday_indicator === 'Holiday' ? 'Holiday' : 'Non-holiday' }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 text-sm">
