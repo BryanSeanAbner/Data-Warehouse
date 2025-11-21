@@ -53,12 +53,57 @@ class Promotion extends Controller
 
             // Get results with pagination
             $promotedProducts = $query->limit(10)->get();
+
+            // Query untuk produk yang tidak terjual selama promosi
+            // Produk yang ada di promotion_factless tapi tidak ada di retail_sales_fact
+            // selama periode promosi
+            $promotion = DB::table('promotion_dimension')
+                ->where('promotion_key', $promotionKey)
+                ->first();
+
+            if ($promotion) {
+                $unsoldProductsQuery = DB::table('promotion_factless as pf')
+                    ->join('product_dimension as pd', 'pf.product_key', '=', 'pd.product_key')
+                    ->join('promotion_dimension as p', 'pf.promotion_key', '=', 'p.promotion_key')
+                    ->where('pf.promotion_key', $promotionKey)
+                    ->where('pf.product_key', '!=', 0) // Exclude "Not Applicable" products
+                    ->whereNotExists(function($query) use ($promotionKey, $storeKey, $promotion) {
+                        $query->select(DB::raw(1))
+                            ->from('retail_sales_fact as rsf')
+                            ->join('date_dimension as dd', 'rsf.date_key', '=', 'dd.date_key')
+                            ->whereColumn('rsf.product_key', 'pf.product_key')
+                            ->where('rsf.promotion_key', $promotionKey)
+                            ->whereBetween('dd.date', [$promotion->promotion_begin_date, $promotion->promotion_end_date]);
+                        
+                        if (!empty($storeKey)) {
+                            $query->where('rsf.store_key', $storeKey);
+                        }
+                    })
+                    ->select(
+                        'pd.product_key',
+                        'pd.sku_number',
+                        'pd.product_description',
+                        'pd.brand_name',
+                        'pd.category_name',
+                        'p.promotion_name',
+                        'p.promotion_code',
+                        'p.promotion_begin_date',
+                        'p.promotion_end_date'
+                    )
+                    ->orderBy('pd.product_description');
+
+                $unsoldProducts = $unsoldProductsQuery->get();
+            } else {
+                $unsoldProducts = collect([]);
+            }
         } else {
             // Return empty paginator if no promotion selected
             $promotedProducts = DB::table('retail_sales_fact')
                 ->whereRaw('1 = 0') // Always false condition
                 ->select('product_key', DB::raw('NULL as product_description'), DB::raw('0 as sum_gross_profit'))
                 ->paginate($perPage)->withQueryString();
+            
+            $unsoldProducts = collect([]);
         }
 
         // Get selected promotion and store info for display
@@ -78,6 +123,7 @@ class Promotion extends Controller
 
         return view('promotion', [
             'promotedProducts' => $promotedProducts,
+            'unsoldProducts' => $unsoldProducts ?? collect([]),
             'promotions' => $promotions,
             'stores' => $stores,
             'selectedPromotion' => $selectedPromotion,
