@@ -16,7 +16,7 @@ class Promotion extends Controller
         // Get promotions for dropdown
         $promotions = DB::table('promotion_dimension')
             ->select('promotion_key', 'promotion_name', 'promotion_code')
-            ->orderBy('promotion_name')
+            ->orderBy('promotion_name') 
             ->get();
 
         // Get stores for dropdown
