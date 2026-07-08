@@ -1,4 +1,4 @@
-# Data Warehouse - Tugas Ujian
+# Data Warehouse 
 
 Tujuan utama project ini adalah membangun sebuah aplikasi berbasis Laravel yang mengimplementasikan konsep data warehouse untuk mengolah dan menganalisis data penjualan retail serta data inventory secara terstruktur.
 
