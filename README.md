@@ -1,6 +1,6 @@
 # Data Warehouse - Tugas Ujian
 
-Project ini dibuat untuk menyelesaikan tugas ujian mata kuliah Data Warehouse. Tujuan utama project ini adalah membangun sebuah aplikasi berbasis Laravel yang mengimplementasikan konsep data warehouse untuk mengolah dan menganalisis data penjualan retail serta data inventory secara terstruktur.
+Tujuan utama project ini adalah membangun sebuah aplikasi berbasis Laravel yang mengimplementasikan konsep data warehouse untuk mengolah dan menganalisis data penjualan retail serta data inventory secara terstruktur.
 
 ## Tujuan Project
 
@@ -37,7 +37,3 @@ Project ini dibuat untuk:
 - `database/seeders/` : data awal dan seeder.
 - `resources/views/` : tampilan halaman web.
 - `routes/` : konfigurasi routing aplikasi.
-
-## Catatan
-
-Project ini disusun sebagai bentuk implementasi praktis dari konsep data warehouse dalam konteks tugas ujian, dengan fokus pada pemodelan data, pengelolaan tabel dimensi/fakta, serta pengolahan data analitik.
